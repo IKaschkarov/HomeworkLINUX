@@ -7,4 +7,4 @@
    7   3 cat file.txt 
    8   4 history | tail -n 5 >> file.txt 
    9  AuthenticX86
- 10 33
+  10 33
