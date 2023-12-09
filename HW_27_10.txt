@@ -1,0 +1,40 @@
+В папке с Вашим именем создайте скрипт taskNAME.sh, где NAME - Ваше имя.
+
+ssh -i ~/.ssh/id_rsa ec2-user@linux.telran-edu.de
+
+cd /opt/220823_morning/kaschkarov
+nano taskIRINA.sh
+
+Скрипт должен создавать по 10 файлов с порядковым номером и датой создания. 120.04.23 , 220.04.23 , 320.04.23 .. 1020.04.23
+
+Создайте в планировщике новое задание, которое должно будет запускать Ваш скрипт каждые 15 минут.
+
+Сделайте архивацию получившихся файлов и переместите их в подпапку в вашей рабочей папке с названием “hwarchive”
+
+#!/bin/bash
+path="/opt/220823_morning/kaschkarov"
+mkdir -p $path/newfiles
+mkdir -p $path/hwarchive
+
+        for var in {1..2}
+        do
+        filename="${var}$(date +%y.%m.%d)"
+        touch $path/newfiles/$filename
+        done
+
+archivename="$(date +%y.%m.%d.%H.%M)"
+tar -cvf $path/hwarchive/$archivename.tar $path/newfiles
+rm -r $path/newfiles
+
+chmod 744 taskIRINA.sh
+./taskIRINA.sh
+
+
+
+
+
+
+
+
+
+
